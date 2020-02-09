@@ -49,9 +49,19 @@
           <?php
   						// als je ingelogt bent staat er log out + username. // als je nog niet bent ingelogt staat er log in
   							if(isset($_SESSION['email'])){
-  								echo"<a class='font' href='logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout ".$_SESSION['email']."</a>";
+  								echo"
+                  <li class='nav-item'>
+                    <a class='nav-link font' href='mijnaccount.php'>Mijn Account</a>
+                  </li>
+                  <li class='nav-item'>
+                    <a class='nav-link font' href='logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout ".$_SESSION['email']."</a>
+                  </li>";
+
   							}else{
-  								echo"<a class='font' href='login.php'><span class='glyphicon glyphicon-log-in'></span> Login</a>";
+  								echo"
+                  <li class='nav-item'>
+                    <a class='nav-link font' href='login.php'><span class='glyphicon glyphicon-log-in'></span> Login</a>
+                  </li>";
   							}
   						?>
         </ul>

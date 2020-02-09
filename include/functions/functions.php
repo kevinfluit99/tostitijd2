@@ -15,7 +15,26 @@ function insertUser($bedrijf,$email,$nummer,$voornaam,$achternaam,$kvk,$adres,$p
 	$stmt = $con->prepare($sql);
   $stmt->execute(array($bedrijf,$email,$nummer,$voornaam,$achternaam,$kvk,$adres,$plaats,$postcode,$provincie,$password));
 }
+function updateUser($bedrijf,$email,$nummer,$voornaam,$achternaam,$kvk,$adres,$plaats,$postcode,$provincie,$id){
+	$con = getDbConnection();
+	$sql = "UPDATE bedrijf SET bedrijf_naam = ?, bedrijf_email= ?, bedrijf_telefoonnummer = ?,bedrijf_vnaam = ?,bedrijf_anaam = ?,bedrijf_kvknummer = ?,bedrijf_adres = ?,bedrijf_plaats = ?,bedrijf_postcode = ?,bedrijf_provincie = ? WHERE  bedrijf_id=? ";
+	$stmt = $con->prepare($sql);
+	$stmt->execute(array($bedrijf,$email,$nummer,$voornaam,$achternaam,$kvk,$adres,$plaats,$postcode,$provincie,$id));
+}
 // Hier worden de tosti's uit de database opgehaald
+function getProfile($id = null){
+	$input_parameters = array();
+
+	$con = getDbConnection();
+	$sql = "SELECT * FROM bedrijf";
+	if($id != null ){
+		$sql .= " WHERE bedrijf_id=? ";
+		array_push($input_parameters , $id);
+	}
+	$stmt = $con->prepare($sql);
+	$stmt->execute($input_parameters);
+	return $id != null ?  $stmt->fetch() :  $stmt->fetchAll();
+}
 function getTosti($id = null){
 	$input_parameters = array();
 
@@ -51,12 +70,12 @@ function updateTosti($naam,$beschrijving,$prijs,$id){
 	$stmt->execute(array($naam,$beschrijving,$prijs,$id));
 }
 // Hier worden bestellingen geplaatst in de database
-function insertBestelling($bedrijf_id,$tosti_id){
+function insertBestelling($bedrijf_id,$tosti_id,$totaal){
 	$prijs=getTosti();
 	$con = getDbConnection();
-	$sql = "INSERT INTO bestelling (bedrijf_bedrijf_id,tosti_tosti_id) VALUES (?,?)";
+	$sql = "INSERT INTO bestelling (bedrijf_bedrijf_id,tosti_tosti_id,bestelling_totaal) VALUES (?,?,?)";
 	$stmt = $con->prepare($sql);
-  $stmt->execute(array($bedrijf_id,$tosti_id));
+  $stmt->execute(array($bedrijf_id,$tosti_id,$totaal));
 }
 // hier worden de bestellingen opgehaald uit de database
 function getBestelling($id = null,$bestelling_id = null,$bedrijf_id=null){

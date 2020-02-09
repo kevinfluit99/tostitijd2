@@ -22,6 +22,7 @@ require_once("../include/include.php");
 	}elseif(isset($_POST['Bestel'])){
 		$tosti_id = $_GET['tosti_id'];
 		$bedrijf_id = $_GET['id'];
-    insertBestelling($bedrijf_id,$tosti_id);
+    $totaal= $_GET['prijs'];
+    insertBestelling($bedrijf_id,$tosti_id,$totaal);
 		header("location: ../assortiment.php");
 	}

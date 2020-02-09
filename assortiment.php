@@ -11,7 +11,7 @@ echo"  <h3 class='font asspage'>Assortiment</h3>
       <div class='col-sm-5 assortiment' >
         <div class='thumbmail dropdown-content'>
           <div class='caption font'>
-            <form method='POST' action='action/ac_tosti.php?id=".$tosti['tosti_id']."'>
+            <form method='POST' action='action/ac_tosti.php?id=".$tosti['tosti_id'].">
               <div class='form__group field'>
                   <input type='input' class='form__field' placeholder='".htmlentities($tosti['tosti_naam'])."' name='txt_tnaam' id='name' required />
                   <label for='name' class='form__label'>Tosti naam</label>
@@ -40,7 +40,7 @@ echo"  <h3 class='font asspage'>Assortiment</h3>
         echo"
         <div class='col-md-9 assortiment' >
           <div class='thumbmail dropdown-content'>
-            <form method='POST' action='action/ac_tosti.php?tosti_id=".$tosti['tosti_id']."&bestelling_id=".$bestelling['bestelling_id']."&id=".$_SESSION['uid']."'>
+            <form method='POST' action='action/ac_tosti.php?tosti_id=".$tosti['tosti_id']."&bestelling_id=".$bestelling['bestelling_id']."&id=".$_SESSION['uid']."&prijs=".$tosti['tosti_prijs']."'>
               <div class='caption font'>
                   <p><b>".htmlentities($tosti['tosti_naam'])."</b></p>
                   <p><i>".htmlentities($tosti['tosti_beschrijving'])."</i></p>
