@@ -62,23 +62,39 @@ echo"  <h3 class='font asspage'>Assortiment</h3>
         </div>
       </div>";
   }else{
-    foreach($bestellingen as $bestelling){
-      foreach($tostis as $tosti){
-        echo"
-        <div class='col-md-9 assortiment' >
-          <div class='thumbmail dropdown-content'>
-            <form method='POST' action='action/ac_tosti.php?tosti_id=".$tosti['tosti_id']."&bestelling_id=".$bestelling['bestelling_id']."&id=".$_SESSION['uid']."&prijs=".$tosti['tosti_prijs']."'>
-              <div class='caption font'>
-                  <p><b>".htmlentities($tosti['tosti_naam'])."</b></p>
-                  <p><i>".htmlentities($tosti['tosti_beschrijving'])."</i></p>
-                  <p> &#8364; ".htmlentities($tosti['tosti_prijs'])."</p>
-              </div>
-              <input type='hidden' name='item[".$tosti['tosti_id']."]' />
-              <input type= 'submit' class='btn btn-primary' name='Bestel' value='Bestel'>
-            </form>
-          </div>
-        </div>";
+    if(isset($_SESSION['uid'])){
+      foreach($bestellingen as $bestelling){
+        foreach($tostis as $tosti){
+          echo"
+          <div class='col-md-7 center assortiment bestelling' >
+            <div class='thumbmail dropdown-content'>
+              <form method='POST' action='action/ac_tosti.php?tosti_id=".$tosti['tosti_id']."&bestelling_id=".$bestelling['bestelling_id']."&id=".$_SESSION['uid']."&prijs=".$tosti['tosti_prijs']."'>
+                <div class='caption font '>
+                    <p><b>".htmlentities($tosti['tosti_naam'])."</b></p>
+                    <p><i>".htmlentities($tosti['tosti_beschrijving'])."</i></p>
+                    <p> &#8364; ".htmlentities($tosti['tosti_prijs'])."</p>
+                </div>
+                <input type='hidden' name='item[".$tosti['tosti_id']."]' />
+                <input type= 'submit' class='btn btn-primary' name='Bestel' value='Bestel'>
+              </form>
+            </div>
+          </div>";
+       }
+       break;
      }
-     break;
+   }else{
+       foreach($tostis as $tosti){
+         echo"
+         <div class='col-md-9 assortiment' >
+           <div class='thumbmail dropdown-content'>
+               <div class='caption font bestelling'>
+                 <p><b>".htmlentities($tosti['tosti_naam'])."</b></p>
+                 <p><i>".htmlentities($tosti['tosti_beschrijving'])."</i></p>
+                 <p> &#8364; ".htmlentities($tosti['tosti_prijs'])."</p>
+               </div>
+           </div>
+         </div>";
+      }
+
    }
-  }
+  } 
