@@ -21,7 +21,7 @@
     <nav class="navbar navbar-dark  indigo darken-2">
 
       <!-- Navbar brand -->
-      <a class="navbar-brand" href="#">Tostitijd</a>
+      <a class="navbar-brand" href="index.php">Tostitijd</a>
 
       <!-- Collapse button -->
       <button class="navbar-toggler third-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent22"
@@ -35,7 +35,7 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="assortiment.php">Assortiment</a>
@@ -52,6 +52,9 @@
   								echo"
                   <li class='nav-item'>
                     <a class='nav-link font' href='mijnaccount.php'>Mijn Account</a>
+                  </li>
+                  <li class='nav-item'>
+                    <a class='nav-link font' href='mijnbestelling.php'>Mijn Bestellingen</a>
                   </li>
                   <li class='nav-item'>
                     <a class='nav-link font' href='logout.php'><span class='glyphicon glyphicon-log-out'></span> Logout ".$_SESSION['email']."</a>

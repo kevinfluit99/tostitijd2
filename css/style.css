@@ -1,3 +1,4 @@
+/*invoer velden*/
 .form__group {
   position: relative;
   padding: 15px 0 0;
@@ -58,6 +59,12 @@
 /* reset input */
 .form__field{
   &:required,&:invalid { box-shadow:none; }
+}
+/*einde van invoer velden*/
+.bestelling{
+  border: 1px solid white;
+  border-radius: 20px;
+
 }
 .center {
   margin: auto;

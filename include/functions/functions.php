@@ -91,3 +91,10 @@ function getBestelling($id = null,$bestelling_id = null,$bedrijf_id=null){
 	$stmt->execute($input_parameters);
 	return $id != null ?  $stmt->fetch() :  $stmt->fetchAll();
 }
+function showBestelling($bestelling_id){
+ 	$con = getDbConnection();
+	$sql = "SELECT t.tosti_id, t.tosti_naam , b.bestelling_totaal,b.bestelling_datum, b.tosti_tosti_id FROM tosti AS t INNER JOIN bestelling AS b ON b.tosti_tosti_id = t.tosti_id WHERE b.bedrijf_bedrijf_id=? ";
+	$stmt = $con->prepare($sql);
+	$stmt->execute(array($bestelling_id));
+	return $stmt->fetchAll();
+}
