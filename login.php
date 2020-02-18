@@ -16,6 +16,7 @@ if(isset($_POST['but_submit'])){
 
         if( $user = $stmt->fetch() ) {
             if(password_verify($password, $user['bedrijf_wachtwoord'])){
+                session_start();
                 $_SESSION['email'] = $user['bedrijf_email'];
         				$_SESSION['uid'] = $user['bedrijf_id'];
         				$_SESSION['admin'] = $user['bedrijf_admin'];

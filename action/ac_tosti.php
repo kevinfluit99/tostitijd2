@@ -20,9 +20,10 @@ require_once("../include/include.php");
 		updateTosti($naam,$beschrijving,$prijs,$id);
 		header("location: ../assortiment.php");
 	}elseif(isset($_POST['Bestel'])){
-		$tosti_id = $_GET['tosti_id'];
+		$aantal =  $_SESSION['shopping_cart'][0]['item_quantity'];
+    $totaal_prijs = $_SESSION['shopping_cart'][0]['item_price'];
 		$bedrijf_id = $_GET['id'];
-    $totaal= $_GET['prijs'];
-    insertBestelling($bedrijf_id,$tosti_id,$totaal);
-		header("location: ../assortiment.php");
-	}
+    $tosti_id = $_GET['tosti_id'];
+		updateTosti($naam,$beschrijving,$prijs,$id);
+		header("location: ../test.php");
+  }

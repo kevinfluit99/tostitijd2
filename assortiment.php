@@ -27,10 +27,10 @@ echo"  <h3 class='font asspage'>Assortiment</h3>
                   <label for='name' class='form__label'>Prijs</label>
                 </div>
                 </br>
-                <input type= 'submit' class='btn btn-primary' name='Delete' value='Delete'>
+                <input type= 'submit' class='btn btn-danger' name='Delete' value='Delete'>
                 <input type= 'submit' class='btn btn-primary' name='Update' value='Wijzig'>
+                  </form>
               </div>
-            </form>
           </div>
         </div>";
     }
@@ -97,4 +97,4 @@ echo"  <h3 class='font asspage'>Assortiment</h3>
       }
 
    }
-  } 
+  }

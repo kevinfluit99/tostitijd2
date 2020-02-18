@@ -70,12 +70,12 @@ function updateTosti($naam,$beschrijving,$prijs,$id){
 	$stmt->execute(array($naam,$beschrijving,$prijs,$id));
 }
 // Hier worden bestellingen geplaatst in de database
-function insertBestelling($bedrijf_id,$tosti_id,$totaal){
+function insertBestelling($bedrijf_id,$tosti_id,$aantal,$totaal){
 	$prijs=getTosti();
 	$con = getDbConnection();
-	$sql = "INSERT INTO bestelling (bedrijf_bedrijf_id,tosti_tosti_id,bestelling_totaal) VALUES (?,?,?)";
+	$sql = "INSERT INTO bestelling (bedrijf_bedrijf_id,tosti_tosti_id,aantal,bestelling_totaal) VALUES (?,?,?,?)";
 	$stmt = $con->prepare($sql);
-  $stmt->execute(array($bedrijf_id,$tosti_id,$totaal));
+  $stmt->execute(array($bedrijf_id,$tosti_id,$aantal,$totaal));
 }
 // hier worden de bestellingen opgehaald uit de database
 function getBestelling($id = null,$bestelling_id = null,$bedrijf_id=null){
