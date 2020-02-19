@@ -3,9 +3,9 @@
 
  $facturen = showProduct($_SESSION['uid'],$_GET['order_id']);
   echo"
-  <table class='table table-bordered'>
+  <table class='table table-bordered font'>
    <thead>
-     <tr class='font'>
+     <tr>
        <th scope='col'>#</th>
        <th scope='col'>Product</th>
        <th scope='col'>Aantal</th>
@@ -22,7 +22,7 @@
        <th scope='row'>1</th>
        <td> ".htmlentities($factuur['name'])."</td>
        <td> ".htmlentities($factuur['quantity'])."</td>
-       <td>€ ".htmlentities($total)."</td>
+       <td>€ ".htmlentities(number_format((float)$total, 2, '.', ''))."</td>
      </tr>";
    }
    foreach ($facturen as $factuur) {

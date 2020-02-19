@@ -63,7 +63,7 @@ if(!empty($sessData['status']['msg'])){
       <div class="collapse navbar-collapse" id="navbarSupportedContent22">
 
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto font">
           <li class="nav-item active">
             <a class="nav-link" href="index.php">Home</a>
           </li>
@@ -116,7 +116,7 @@ if(!empty($sessData['status']['msg'])){
 </head>
 <body>
 <div class="container">
-    <h1>CHECKOUT</h1>
+    <h1 class='font'>CHECKOUT</h1>
     <div class="col-12">
         <div class="checkout">
             <div class="row">
@@ -132,7 +132,7 @@ if(!empty($sessData['status']['msg'])){
 
                 <div class="col-md-4 order-md-2 mb-4">
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-muted">Your Cart</span>
+                        <span class="text-muted">Uw Winkelmandje</span>
                         <span class="badge badge-secondary badge-pill"><?php echo $cart->total_items(); ?></span>
                     </h4>
                     <ul class="list-group mb-3">
@@ -145,45 +145,45 @@ if(!empty($sessData['status']['msg'])){
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                             <div>
                                 <h6 class="my-0"><?php echo $item["name"]; ?></h6>
-                                <small class="text-muted"><?php echo '€'.$item["price"]; ?>(<?php echo $item["qty"]; ?>)</small>
+                                <small class="text-muted">€<?php echo number_format((float)$item["price"], 2, '.', '') ?>(<?php echo $item["qty"]; ?>)</small>
                             </div>
-                            <span class="text-muted"><?php echo '€'.$item["subtotal"]; ?></span>
+                            <span class="text-muted"><?php echo '€'.number_format((float)$item["subtotal"], 2, '.', ''); ?></span>
                         </li>
                         <?php } } ?>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (EUR)</span>
-                            <strong><?php echo '€'.$cart->total(); ?></strong>
+                            <span>Totaal (EUR)</span>
+                            <strong>€<?php echo number_format((float)'€'.$cart->total(), 2, '.', ''); ?></strong>
                         </li>
                     </ul>
-                    <a href="bestel.php" class="btn btn-block btn-info">Add Items</a>
+                    <a href="bestel.php" class="btn btn-block btn-info">Voeg andere producten toe</a>
                 </div>
-                <div class="col-md-8 order-md-1">
-                    <h4 class="mb-3">Contact Details</h4>
+                <div class="col-md-8 order-md-1 ">
+                    <h4 class="mb-3 Contacten">Contact Details</h4>
                     <form method="post" action="cartAction.php">
-                        <div class="row">
+                        <div class="row Contacten">
                             <div class="col-md-6 mb-3">
                                 <label for="first_name">First Name</label>
                                 <input type="hidden" class="form-control" name="first_name" value="<?php echo !empty($postData['first_name'])?$postData['first_name']:'test'; ?>" >
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-6 mb-3 Contacten">
                                 <label for="last_name">Last Name</label>
                                 <input type="hidden" class="form-control" name="last_name" value="<?php echo !empty($postData['last_name'])?$postData['last_name']:'test'; ?>" >
                             </div>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 Contacten">
                             <label for="email">Email</label>
                             <input type="hidden" class="form-control" name="email" value="<?php echo !empty($postData['email'])?$postData['email']:'test@gmail.com'; ?>" >
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 Contacten">
                             <label for="phone">Phone</label>
                             <input type="hidden" class="form-control" name="phone" value="<?php echo !empty($postData['phone'])?$postData['phone']:'0612345678'; ?>" >
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 Contacten">
                             <label for="last_name">Address</label>
                             <input type="hidden" class="form-control" name="address" value="<?php echo !empty($postData['address'])?$postData['address']:'test'; ?>" >
                         </div>
                         <input type="hidden" name="action" value="placeOrder"/>
-                        <input class="btn btn-success btn-lg btn-block" type="submit" name="checkoutSubmit" value="Place Order">
+                        <input class="btn btn-success btn-lg btn-block bottom" type="submit" name="checkoutSubmit" value="Plaats bestelling">
                     </form>
                 </div>
             </div>

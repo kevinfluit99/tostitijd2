@@ -51,45 +51,23 @@ function getTosti($id = null){
 // Hier worden tosti's toegevoegd aan de database
 function insertTosti($naam,$beschrijving,$prijs){
 	$con = getDbConnection();
-	$sql = "INSERT INTO tosti (tosti_naam,tosti_beschrijving,tosti_prijs) VALUES (?,?,?)";
+	$sql = "INSERT INTO products (name,description,price) VALUES (?,?,?)";
 	$stmt = $con->prepare($sql);
   $stmt->execute(array($naam,$beschrijving,$prijs));
 }
 // hier wordt de geselecteerde tosti verwijderd uit de database
 function deleteTosti($id){
 	$con = getDbConnection();
-	$sql = "DELETE FROM tosti WHERE tosti_id=?";
+	$sql = "DELETE FROM products WHERE id=?";
 	$stmt = $con->prepare($sql);
 	$stmt->execute(array($id));
 }
 // Hier worden de tosti's gewijzigd in de database
 function updateTosti($naam,$beschrijving,$prijs,$id){
 	$con = getDbConnection();
-	$sql = "UPDATE tosti SET tosti_naam = ?, tosti_beschrijving = ?, tosti_prijs = ? WHERE  tosti_id=? ";
+	$sql = "UPDATE products SET name = ?, description = ?, price = ? WHERE  id=? ";
 	$stmt = $con->prepare($sql);
 	$stmt->execute(array($naam,$beschrijving,$prijs,$id));
-}
-// Hier worden bestellingen geplaatst in de database
-function insertBestelling($bedrijf_id,$tosti_id,$aantal,$totaal){
-	$prijs=getTosti();
-	$con = getDbConnection();
-	$sql = "INSERT INTO bestelling (bedrijf_bedrijf_id,tosti_tosti_id,aantal,bestelling_totaal) VALUES (?,?,?,?)";
-	$stmt = $con->prepare($sql);
-  $stmt->execute(array($bedrijf_id,$tosti_id,$aantal,$totaal));
-}
-// hier worden de bestellingen opgehaald uit de database
-function getBestelling($id = null,$bestelling_id = null,$bedrijf_id=null){
-	$input_parameters = array();
-
-	$con = getDbConnection();
-	$sql = "SELECT * FROM bestelling";
-	if($id != null ){
-		$sql .= " WHERE bestelling_id=? AND tosti_tosti_id=? AND bedrijf_bedrijf_id=?";
-		array_push($input_parameters , $id,$bestelling_id,$bedrijf_id);
-	}
-	$stmt = $con->prepare($sql);
-	$stmt->execute($input_parameters);
-	return $id != null ?  $stmt->fetch() :  $stmt->fetchAll();
 }
 function showBestelling($bestelling_id){
  	$con = getDbConnection();

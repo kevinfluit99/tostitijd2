@@ -110,18 +110,18 @@ function updateCartItem(obj,id){
 </script>
 
 <div class="container">
-    <h1>SHOPPING CART</h1>
+    <h1 class='font'>Winkelmandje</h1>
     <div class="row">
         <div class="cart">
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
+                            <tr class='font'>
                                 <th width="45%">Product</th>
-                                <th width="10%">Price</th>
-                                <th width="15%">Quantity</th>
-                                <th class="text-right" width="20%">Total</th>
+                                <th width="10%">Prijs</th>
+                                <th width="15%">Aantal</th>
+                                <th class="text-right" width="20%">Totaal</th>
                                 <th width="10%"> </th>
                             </tr>
                         </thead>
@@ -134,9 +134,9 @@ function updateCartItem(obj,id){
                             ?>
                             <tr>
                                 <td><?php echo $item["name"]; ?></td>
-                                <td><?php echo '€'.$item["price"].' EUR'; ?></td>
-                                <td><input class="form-control" type="number" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"/></td>
-                                <td class="text-right"><?php echo '€'.$item["subtotal"].' EUR'; ?></td>
+                                <td><?php echo '€'. number_format((float)$item["price"], 2, '.', '').' EUR'; ?></td>
+                                <td><input class="form-control aantalt" type="number" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"/></td>
+                                <td class="text-right">€<?php echo  number_format((float)$item["subtotal"], 2, '.', ''); ?></td>
                                 <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Weet je het zeker?')?window.location.href='cartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>':false;"><i class="itrash"></i> </button> </td>
                             </tr>
                             <?php } }else{ ?>
@@ -146,8 +146,8 @@ function updateCartItem(obj,id){
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><strong>Cart Total</strong></td>
-                                <td class="text-right"><strong><?php echo '€'.$cart->total().' EUR'; ?></strong></td>
+                                <td><strong>Winkelmandje Totaal</strong></td>
+                                <td class="text-right"><strong>€<?php echo  number_format((float)$cart->total(), 2, '.', ''); ?></strong></td>
                                 <td></td>
                             </tr>
                             <?php } ?>
@@ -157,12 +157,12 @@ function updateCartItem(obj,id){
             </div>
             <div class="col mb-2">
                 <div class="row">
-                    <div class="col-sm-12  col-md-6">
-                        <a href="bestel.php" class="btn btn-block btn-light">Continue Shopping</a>
+                    <div class=" col-md-6">
+                        <a href="bestel.php" class="btn btn-dark">Ga verder winkelen</a>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
                         <?php if($cart->total_items() > 0){ ?>
-                        <a href="checkout.php" class="btn btn-lg btn-block btn-primary">Checkout</a>
+                        <a href="checkout.php" class="btn btn-lg btn-block btn-primary">Betalen</a>
                         <?php } ?>
                     </div>
                 </div>

@@ -45,8 +45,8 @@ $cart = new Cart;
       <div class="collapse navbar-collapse" id="navbarSupportedContent22">
 
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+        <ul class="navbar-nav mr-auto font">
+          <li class="nav-item">
             <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
@@ -90,11 +90,11 @@ $cart = new Cart;
 
     </nav>
 <div class="container">
-    <h1>PRODUCTS</h1>
+    <h1>PRODUCTEN</h1>
 
     <!-- Cart basket -->
     <div class="cart-view">
-        <a href="viewCart.php" title="View Cart"><i class="icart"></i> (<?php echo ($cart->total_items() > 0)?$cart->total_items().' Items':'Empty'; ?>)</a>
+        <a href="viewCart.php" title="View Cart"><i class="icart"></i> (<?php echo ($cart->total_items() > 0)?$cart->total_items().' Items':'Leeg'; ?>)</a>
     </div>
 
     <!-- Product list -->
@@ -110,7 +110,7 @@ $cart = new Cart;
                 <h5 class="card-title"><?php echo $row["name"]; ?></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Prijs: <?php echo '€'.$row["price"].' EUR'; ?></h6>
                 <p class="card-text"><?php echo $row["description"]; ?></p>
-                <a href="cartAction.php?action=addToCart&id=<?php echo $row["id"]; ?>" class="btn btn-primary">Add to Cart</a>
+                <a href="cartAction.php?action=addToCart&id=<?php echo $row["id"]; ?>" class="btn btn-primary">Voeg toe aan winkelmandje</a>
             </div>
         </div>
         <?php } }else{ ?>

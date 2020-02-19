@@ -59,7 +59,7 @@ if($result->num_rows > 0){
       <div class="collapse navbar-collapse" id="navbarSupportedContent22">
 
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto font">
           <li class="nav-item active">
             <a class="nav-link" href="index.php">Home</a>
           </li>
@@ -116,7 +116,7 @@ if($result->num_rows > 0){
     <div class="col-12 font">
         <?php if(!empty($orderInfo)){ ?>
             <div class="col-md-12">
-                <div class="alert alert-success">Your order has been placed successfully.</div>
+                <div class="alert alert-success"> Uw bestelling is geplaatst.</div>
             </div>
 
             <!-- Order items -->
@@ -125,16 +125,16 @@ if($result->num_rows > 0){
                     <thead>
                         <tr class='font'>
                             <th>Product</th>
-                            <th>Price</th>
-                            <th>QTY</th>
-                            <th>Sub Total</th>
+                            <th>Prijs</th>
+                            <th>Aantal</th>
+                            <th>Sub Totaal</th>
                             <th>Totaal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         // Get order items from the database
-                        $result = $db->query("SELECT i.*, p.name,o.grand_total, p.price FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE i.order_id = ".$orderInfo['id']);
+                        $result = $db->query("SELECT i.*, p.name,o.grand_total, p.price FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE i.order_id = ".$_GET['id']);
                         if($result->num_rows > 0){
                             while($item = $result->fetch_assoc()){
                                 $price = $item["price"];
@@ -146,7 +146,7 @@ if($result->num_rows > 0){
                             <td><?php echo $item["name"]; ?></td>
                             <td><?php echo '€'.$price.' EUR'; ?></td>
                             <td><?php echo $quantity; ?></td>
-                            <td><?php echo '€'.$sub_total.' EUR'; ?></td>
+                            <td><?php echo '€'.number_format((float)$sub_total, 2, '.', '').' EUR'; ?></td>
 
                         <?php }
                         } ?>
@@ -157,7 +157,7 @@ if($result->num_rows > 0){
             </div>
         <?php } else{ ?>
         <div class="col-md-12">
-            <div class="alert alert-danger">Your order submission failed.</div>
+            <div class="alert alert-danger">Uw bestelling is mislukt.</div>
         </div>
         <?php } ?>
     </div>

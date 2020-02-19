@@ -1,7 +1,6 @@
 <?php
 require_once('include/include.php');
 $tostis = getTosti();
-$bestellingen = getbestelling();
 
 echo"  <h3 class='font asspage'>Assortiment</h3>
   <hr class='hr dropdown'>";
@@ -35,8 +34,9 @@ echo"  <h3 class='font asspage'>Assortiment</h3>
         </div>";
     }
     echo"
-      <h1 class='insTosti font'>Voeg hier nieuwe tosti's toe</h1>
-      <div class='col-md-4' id='Tosti'>
+
+      <div class='col-md-4 bottom' id='Tosti'>
+        <h1 class='insTosti font'>Voeg hier nieuwe tosti's toe</h1>
         <hr class='hr'>
         <div class='thumbmail'>
           <div class='caption font'>

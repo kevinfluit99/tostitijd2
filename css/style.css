@@ -110,10 +110,25 @@
   text-align: center;
   margin-top: 20px;
   margin-left: 40px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 20px;
+}
+.bottom {
+   position:relative;
+   left: 0;
+   bottom: 0;
+   margin-bottom: 10px;
 }
 .insTosti{
   width:100%;
   margin-top: 40px;
+}
+.tosti{
+  float:left;
+}
+.aantalt{
+  width: 50px;
 }
 #main-menu {
     background-color: white;
@@ -121,7 +136,10 @@
 .font{
   font-family: Segoe UI;
   color:white;
-  font-size: 20px;
+  font-size: 15px;
+}
+.Contacten{
+  display:none;
 }
 .list-group-item {
     background-color: white;
