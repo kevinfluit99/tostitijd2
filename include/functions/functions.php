@@ -93,8 +93,15 @@ function getBestelling($id = null,$bestelling_id = null,$bedrijf_id=null){
 }
 function showBestelling($bestelling_id){
  	$con = getDbConnection();
-	$sql = "SELECT t.tosti_id, t.tosti_naam , b.bestelling_totaal,b.bestelling_datum, b.tosti_tosti_id FROM tosti AS t INNER JOIN bestelling AS b ON b.tosti_tosti_id = t.tosti_id WHERE b.bedrijf_bedrijf_id=? ";
+	$sql = "SELECT i.*, p.name, o.grand_total, o.created FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE o.customer_id =? GROUP BY i.order_id";
 	$stmt = $con->prepare($sql);
 	$stmt->execute(array($bestelling_id));
+	return $stmt->fetchAll();
+}
+function showProduct($bestelling_id,$order_id){
+ 	$con = getDbConnection();
+	$sql = "SELECT i.*, p.name, o.grand_total, o.created FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE o.customer_id =? AND i.order_id =?";
+	$stmt = $con->prepare($sql);
+	$stmt->execute(array($bestelling_id,$order_id));
 	return $stmt->fetchAll();
 }

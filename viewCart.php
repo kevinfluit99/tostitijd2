@@ -105,8 +105,7 @@ function updateCartItem(obj,id){
     });
 }
 </script>
-</head>
-<body>
+
 <div class="container">
     <h1>SHOPPING CART</h1>
     <div class="row">
