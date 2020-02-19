@@ -7,7 +7,7 @@ $cart = new Cart;
 require_once 'dbConfig.php';
 
 // Default redirect page
-$redirectLoc = 'index.php';
+$redirectLoc = 'bestel.php';
 
 // Process request based on the specified action
 if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
@@ -28,7 +28,7 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
         $insertItem = $cart->insert($itemData);
 
         // Redirect to cart page
-        $redirectLoc = $insertItem?'viewCart.php':'index.php';
+        $redirectLoc = $insertItem?'viewCart.php':'bestel.php';
     }elseif($_REQUEST['action'] == 'updateCartItem' && !empty($_REQUEST['id'])){
         // Update item data in cart
         $itemData = array(

@@ -39,9 +39,9 @@ function getTosti($id = null){
 	$input_parameters = array();
 
 	$con = getDbConnection();
-	$sql = "SELECT * FROM tosti";
+	$sql = "SELECT * FROM products";
 	if($id != null ){
-		$sql .= " WHERE tosti_id=? ";
+		$sql .= " WHERE id=? ";
 		array_push($input_parameters , $id);
 	}
 	$stmt = $con->prepare($sql);
@@ -100,7 +100,7 @@ function showBestelling($bestelling_id){
 }
 function showProduct($bestelling_id,$order_id){
  	$con = getDbConnection();
-	$sql = "SELECT i.*, p.name, o.grand_total, o.created FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE o.customer_id =? AND i.order_id =?";
+	$sql = "SELECT i.*, p.name,p.price, o.grand_total, o.created FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE o.customer_id =? AND i.order_id =?";
 	$stmt = $con->prepare($sql);
 	$stmt->execute(array($bestelling_id,$order_id));
 	return $stmt->fetchAll();

@@ -8,7 +8,7 @@ $cart = new Cart;
 
 // If the cart is empty, redirect to the products page
 if($cart->total_items() <= 0){
-    header("Location: index.php");
+    header("Location: bestel.php");
 }
 
 // Get posted data from session
@@ -81,6 +81,9 @@ if(!empty($sessData['status']['msg'])){
   							if(isset($_SESSION['email'])){
   								echo"
                   <li class='nav-item'>
+                    <a class='nav-link font' href='bestel.php'>Bestel</a>
+                  </li>
+                  <li class='nav-item'>
                     <a class='nav-link font' href='mijnaccount.php'>Mijn Account</a>
                   </li>
                   <li class='nav-item'>
@@ -152,7 +155,7 @@ if(!empty($sessData['status']['msg'])){
                             <strong><?php echo '€'.$cart->total(); ?></strong>
                         </li>
                     </ul>
-                    <a href="index.php" class="btn btn-block btn-info">Add Items</a>
+                    <a href="bestel.php" class="btn btn-block btn-info">Add Items</a>
                 </div>
                 <div class="col-md-8 order-md-1">
                     <h4 class="mb-3">Contact Details</h4>

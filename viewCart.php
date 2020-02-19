@@ -43,7 +43,7 @@ $cart = new Cart;
       <div class="collapse navbar-collapse" id="navbarSupportedContent22">
 
         <!-- Links -->
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto font">
           <li class="nav-item active">
             <a class="nav-link" href="index.php">Home</a>
           </li>
@@ -60,6 +60,9 @@ $cart = new Cart;
   						// als je ingelogt bent staat er log out + username. // als je nog niet bent ingelogt staat er log in
   							if(isset($_SESSION['email'])){
   								echo"
+                  <li class='nav-item'>
+                    <a class='nav-link font' href='bestel.php'>Bestel</a>
+                  </li>
                   <li class='nav-item'>
                     <a class='nav-link font' href='mijnaccount.php'>Mijn Account</a>
                   </li>
@@ -133,11 +136,11 @@ function updateCartItem(obj,id){
                                 <td><?php echo $item["name"]; ?></td>
                                 <td><?php echo '€'.$item["price"].' EUR'; ?></td>
                                 <td><input class="form-control" type="number" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item["rowid"]; ?>')"/></td>
-                                <td class="text-right"><?php echo '$'.$item["subtotal"].' USD'; ?></td>
-                                <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')?window.location.href='cartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>':false;"><i class="itrash"></i> </button> </td>
+                                <td class="text-right"><?php echo '€'.$item["subtotal"].' EUR'; ?></td>
+                                <td class="text-right"><button class="btn btn-sm btn-danger" onclick="return confirm('Weet je het zeker?')?window.location.href='cartAction.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>':false;"><i class="itrash"></i> </button> </td>
                             </tr>
                             <?php } }else{ ?>
-                            <tr><td colspan="5"><p>Your cart is empty.....</p></td>
+                            <tr><td colspan="5"><p>Uw winkelmandje is leeg.....</p></td>
                             <?php } ?>
                             <?php if($cart->total_items() > 0){ ?>
                             <tr>
@@ -155,7 +158,7 @@ function updateCartItem(obj,id){
             <div class="col mb-2">
                 <div class="row">
                     <div class="col-sm-12  col-md-6">
-                        <a href="index.php" class="btn btn-block btn-light">Continue Shopping</a>
+                        <a href="bestel.php" class="btn btn-block btn-light">Continue Shopping</a>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
                         <?php if($cart->total_items() > 0){ ?>

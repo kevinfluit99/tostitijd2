@@ -19,6 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body class='background'>
@@ -38,8 +40,8 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent22">
       <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+      <ul class="navbar-nav mr-auto font">
+        <li class="nav-item">
           <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item">
@@ -55,6 +57,9 @@
         // als je ingelogt bent staat er log out + username. // als je nog niet bent ingelogt staat er log in
         if(isset($_SESSION['email'])){
           echo"
+          <li class='nav-item'>
+            <a class='nav-link font' href='bestel.php'>Bestel</a>
+          </li>
           <li class='nav-item'>
             <a class='nav-link font' href='mijnaccount.php'>Mijn Account</a>
           </li>

@@ -1,26 +1,12 @@
 <?php
-if(!isset($_REQUEST['id'])){
-    header("Location: bestel.php");
-}
-if(!session_id()){
-    session_start();
-}
+// Initialize shopping cart class
+include_once 'Cart.class.php';
+$cart = new Cart;
 
 // Include the database config file
-require_once 'dbConfig.php';
-
-// Fetch order details from database
-$result = $db->query("SELECT r.*, b.bedrijf_naam, b.bedrijf_telefoonnummer, b.bedrijf_email FROM orders as r LEFT JOIN bedrijf as b ON b.bedrijf_id = r.customer_id WHERE r.customer_id = ".$_SESSION['uid']);
-
-if($result->num_rows > 0){
-    $orderInfo = $result->fetch_assoc();
-}else{
-    header("Location: bestel.php");
-}
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -74,7 +60,7 @@ if($result->num_rows > 0){
           </li>
           <?php
   						// als je ingelogt bent staat er log out + username. // als je nog niet bent ingelogt staat er log in
-  							if(isset($_SESSION['uid'])){
+  							if(isset($_SESSION['email'])){
   								echo"
                   <li class='nav-item'>
                     <a class='nav-link font' href='bestel.php'>Bestel</a>
@@ -103,64 +89,36 @@ if($result->num_rows > 0){
       <!-- Collapsible content -->
 
     </nav>
+<div class="container">
+    <h1>PRODUCTS</h1>
 
-<!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Cart basket -->
+    <div class="cart-view">
+        <a href="viewCart.php" title="View Cart"><i class="icart"></i> (<?php echo ($cart->total_items() > 0)?$cart->total_items().' Items':'Empty'; ?>)</a>
+    </div>
 
-<!-- Custom style -->
-<link href="css/style.css" rel="stylesheet">
-</head>
-<body>
-<div class="container font">
-    <h1>ORDER STATUS</h1>
-    <div class="col-12 font">
-        <?php if(!empty($orderInfo)){ ?>
-            <div class="col-md-12">
-                <div class="alert alert-success">Your order has been placed successfully.</div>
+    <!-- Product list -->
+    <div class="row col-lg-12">
+        <?php
+        // Get products from database
+        $result = $db->query("SELECT * FROM products ORDER BY id DESC LIMIT 10");
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+        ?>
+        <div class="card col-lg-4">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo $row["name"]; ?></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Prijs: <?php echo '€'.$row["price"].' EUR'; ?></h6>
+                <p class="card-text"><?php echo $row["description"]; ?></p>
+                <a href="cartAction.php?action=addToCart&id=<?php echo $row["id"]; ?>" class="btn btn-primary">Add to Cart</a>
             </div>
-
-            <!-- Order items -->
-            <div class="row col-lg-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr class='font'>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>QTY</th>
-                            <th>Sub Total</th>
-                            <th>Totaal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        // Get order items from the database
-                        $result = $db->query("SELECT i.*, p.name,o.grand_total, p.price FROM order_items as i LEFT JOIN products as p ON p.id = i.product_id LEFT JOIN orders as o ON o.id = i.order_id WHERE i.order_id = ".$orderInfo['id']);
-                        if($result->num_rows > 0){
-                            while($item = $result->fetch_assoc()){
-                                $price = $item["price"];
-                                $quantity = $item["quantity"];
-                                $sub_total = ($price*$quantity);
-                                $total = $item['grand_total'];
-                        ?>
-                        <tr class='font'>
-                            <td><?php echo $item["name"]; ?></td>
-                            <td><?php echo '€'.$price.' EUR'; ?></td>
-                            <td><?php echo $quantity; ?></td>
-                            <td><?php echo '€'.$sub_total.' EUR'; ?></td>
-
-                        <?php }
-                        } ?>
-                        <td><?php echo '€'.$total.' EUR'; ?></td>
-  </tr>
-                    </tbody>
-                </table>
-            </div>
-        <?php } else{ ?>
-        <div class="col-md-12">
-            <div class="alert alert-danger">Your order submission failed.</div>
         </div>
+        <?php } }else{ ?>
+        <p>Product(en) niet gevonden.....</p>
         <?php } ?>
     </div>
 </div>
+<!-- jQuery library -->
+<script src="js/jquery.min.js"></script>
 </body>
 </html>
